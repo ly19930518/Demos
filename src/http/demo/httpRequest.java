@@ -22,19 +22,26 @@ public class httpRequest {
 		//创建默认httpclient实例
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		//创建httpPost
-		HttpPost httpPost = new HttpPost("https://www.baidu.com");
+		HttpPost httpPost = new HttpPost("http://wap.abcyir.com/zhuche.jsp");
+		//模拟游览器
+		httpPost.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+		httpPost.setHeader("Accept-Encoding", "gzip, deflate");
+		httpPost.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
+		httpPost.setHeader("Connection", "keep-alive");
+		httpPost.setHeader("User-Agent","Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Mobile Safari/537.36");
+		
 		//创建参数队列
 		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 		formparams.add(new BasicNameValuePair("1","1"));
 		try {
 			//将参数加入到post请求实体中
-			httpPost.setEntity(new UrlEncodedFormEntity(formparams,"utf-8"));
+			httpPost.setEntity(new UrlEncodedFormEntity(formparams,"gb2312"));
 			System.out.println("executing request "+httpPost.getURI());
 			CloseableHttpResponse responese = httpClient.execute(httpPost);
 			try{
 				HttpEntity entity = responese.getEntity();
 				if(entity != null){
-					System.out.println("responese content "+ EntityUtils.toString(entity,"utf-8"));
+					System.out.println("responese content "+ EntityUtils.toString(entity,"gb2312"));
 				}
 			}finally{
 				responese.close();
@@ -62,16 +69,15 @@ public class httpRequest {
 	public void Get(){
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		//创建httpget
-		HttpGet httpget = new HttpGet("https://www.baidu.com/s?wd=java%20post%20%E5%8F%82%E6%95%B0%20keyvalue%20%E7%B1%BB&rsv_spt=1&rsv_iqid=0xc02f9a4000310ad0&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=0&oq=java%2520keyvalue%2520%25E7%25B1%25BB&rsv_t=704ex5iG2BQ6RrPdeP7fZu6brNtDeydAgL%2F4pGQxJWUJnMq7CQRHXXcSwfmmcZceXU7w&rsv_pq=fa9d8666002fd353&rsv_sug3=44&rsv_sug1=24&rsv_sug7=100&rsv_sug2=0&inputT=5332&rsv_sug4=6819&rsv_sug=1");
+		HttpGet httpget = new HttpGet("http://wap.abcyir.com");
 		System.out.println("executing request "+httpget.getURI());
 		//模拟游览器
-		httpget.setHeader("Accept", "text/html, */*; q=0.01");
-		httpget.setHeader("Accept-Encoding", "gzip, deflate,sdch");
-		httpget.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
-		httpget.setHeader("Connection", "keep-alive");
-		httpget.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36)");
-		
-		
+//		httpget.setHeader("Accept", "text/html, */*; q=0.01");
+//		httpget.setHeader("Accept-Encoding", "gzip, deflate,sdch");
+//		httpget.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
+//		httpget.setHeader("Connection", "keep-alive");
+//		httpget.setHeader("User-Agent", "Mozilla/5.0 (SymbianOS/9.4; Series60/5.0 NokiaN97-1/20.0.019; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) BrowserNG/7.1.18124");
+//		
 		try {
 			//执行请求
 			CloseableHttpResponse response = httpClient.execute(httpget);
@@ -82,7 +88,7 @@ public class httpRequest {
 				System.out.println(response.getStatusLine());
 				if(entity != null){
 					System.out.println("response length "+entity.getContentLength());
-					System.out.println("response cpntent "+EntityUtils.toString(entity));
+					System.out.println("response cpntent "+EntityUtils.toString(entity,"gb2312"));
 				}
 			}finally{
 				response.close();
@@ -108,6 +114,6 @@ public class httpRequest {
 	}
 	public static void main(String[] args) {
 		httpRequest h =new httpRequest();
-		h.Get();
+		h.Post();
 	}
 }
