@@ -20,13 +20,16 @@
 	<img alt="" src="Image?id=C:\Users\Administrator\Pictures\1920x1080\1920x1080-3.jpg" width="400px" height="400px">
 	 -->
 	 <div id="x">ces</div>
+	 <script type="text/javascript" src="js/util/StringUtil.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		console.log("111");
-		alert("111");
+		var search = window.location.search;
+		alert(getQueryString('type'));
 		set_ub("a", "xxxxxxxxxx");
 		get_ub("a");
 	}
+	
 	function set_ub(key,value){
 		var a = document.getElementById("x");
 		a.addBehavior("#default#userdata");
