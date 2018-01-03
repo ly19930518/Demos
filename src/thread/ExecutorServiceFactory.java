@@ -36,7 +36,7 @@ public class ExecutorServiceFactory {
 	        executors = Executors.newScheduledThreadPool(availableProcessors * 10, getThreadFactory());
 	        return executors;
 	    }
-
+	    
 	    /**
 	     * 创建一个使用单个 worker 线程的
 	     * Executor，以无界队列方式来运行该线程。（注意，如果因为在关闭前的执行期间出现失败而终止了此单个线程，

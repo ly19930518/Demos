@@ -41,7 +41,7 @@ public class ExecutorTest {
         public ExcuteTask1(String taskName) {
             this.taskName = taskName;
         }
-
+        
         @Override
         public String call() throws Exception {
             try {
@@ -68,7 +68,7 @@ public class ExecutorTest {
         public ExcuteTask2(String taskName) {
             this.taskName = taskName;
         }
-
+        
         @Override
         public void run() {
             try {
