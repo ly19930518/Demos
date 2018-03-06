@@ -16,6 +16,7 @@ import javax.jms.Destination;
 import javax.jms.MessageProducer;  
 import javax.jms.Session;  
 import javax.jms.TextMessage;  
+
 import org.apache.activemq.ActiveMQConnection;  
 import org.apache.activemq.ActiveMQConnectionFactory;  
   
@@ -48,7 +49,7 @@ public class Sender {
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);  
             // 构造消息，此处写死，项目就是参数，或者方法获取  
             sendMessage(session, producer);  
-            session.commit();  
+//            session.commit();  
         } catch (Exception e) {  
             e.printStackTrace();  
         } finally {  
@@ -59,17 +60,20 @@ public class Sender {
             }  
         }  
     }  
-  
+    
     public static void sendMessage(Session session, MessageProducer producer)  
             throws Exception {  
-        for (int i = 1; i <= 100000; i++) {  
-            TextMessage message = session.createTextMessage("ActiveMq 发送的消息"  
-                    + i);  
-            // 发送消息到目的地方  
-  
-            System.out.println("发送消息：" + "ActiveMq 发送的消息" + i);  
-            producer.send(message);  
-            Thread.sleep(1000*2);
-        }  
+    	int i = 0;
+       while(true){
+    	   TextMessage message = session.createTextMessage("ActiveMq 发送的消息"  
+                   + i);  
+           // 发送消息到目的地方  
+           
+           System.out.println("发送消息：" + "ActiveMq 发送的消息" + i);  
+           producer.send(message);  
+           session.commit();
+           i++;
+       }
+        
     }  
 }
