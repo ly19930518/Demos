@@ -10,25 +10,25 @@ public class ExecutorTest {
     public static void main(String[] args) {
 
         ExecutorProcessPool pool = ExecutorProcessPool.getInstance();
-        for (int i = 0; i < 1000; i++) {
-            Future<?> future = pool.submit(new ExcuteTask1(i+""));
-//          try {
-//              如果接收线程返回值，future.get() 会阻塞，如果这样写就是一个线程一个线程执行。所以非特殊情况不建议使用接收返回值的。
-//              System.out.println(future.get());   
-//          } catch (Exception e) {
-//              e.printStackTrace();
-//          }
-        }
+//        for (int i = 0; i < 1000; i++) {
+//            Future<?> future = pool.submit(new ExcuteTask1(i+""));
+////          try {
+////              如果接收线程返回值，future.get() 会阻塞，如果这样写就是一个线程一个线程执行。所以非特殊情况不建议使用接收返回值的。
+////              System.out.println(future.get());   
+////          } catch (Exception e) {
+////              e.printStackTrace();
+////          }
+//        }
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10000; i++) {
             pool.execute(new ExcuteTask2(i+""));
         }
-        
+        System.out.println("循环完成");
         //关闭线程池，如果是需要长期运行的线程池，不用调用该方法。
         //监听程序退出的时候最好执行一下。
         pool.shutdown();
     }
-
+    
     /**
      * 执行任务1，实现Callable方式
      *
@@ -72,7 +72,7 @@ public class ExecutorTest {
         @Override
         public void run() {
             try {
-                TimeUnit.MILLISECONDS.sleep((int)(Math.random() * 1000));// 1000毫秒以内的随机数，模拟业务逻辑处理
+                TimeUnit.MILLISECONDS.sleep((int)(Math.random() * 10000));// 1000毫秒以内的随机数，模拟业务逻辑处理
             } catch (Exception e) {
                 e.printStackTrace();
             }

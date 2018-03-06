@@ -8,7 +8,7 @@ public class test extends Thread{
 
 	@Override
 	public void run() {
-	
+			
 			int sum = 0;
 			while(true){
 				this.setName("线程任务"+sum);

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 public class test3 {
@@ -23,10 +24,25 @@ public class test3 {
 		return i - (i >> 1);
 	}
 	public static void main(String[] args) {
+		
 //		System.out.println(Integer.toBinaryString(test3.highestOneBit(111114111)));
 //		System.out.println(Integer.toBinaryString(1));
-		ThreadTest t = new ThreadTest();
-		t.start();
+//		ThreadTest t = new ThreadTest();
+//		t.start();
+//		System.out.println();
+//		System.out.println(2*2*2*2*2*2*2*2);
+//		Scanner scanner = new Scanner(System.in);
+//		String str = scanner.nextLine();										//64+40     100 + 50 +
+//		System.out.println(str);
+//		System.err.println("ssssssssss");
+//		System.err.printf("%s%n%s", str,222);
+//		System.out.println(Integer.toBinaryString(2)); //1 * 16 *16 + 5 * 16 +4  256 +80 +4 = 334   
+//		System.gc();
+//		System.out.println(System.nanoTime());
+		
+		String str = "12346578";
+		System.out.println(str.substring(2, 23));
+		
 	}
 }
 class ServerMap{
