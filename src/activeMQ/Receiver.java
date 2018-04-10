@@ -15,10 +15,15 @@ import javax.jms.Destination;
 import javax.jms.MessageConsumer;  
 import javax.jms.Session;  
 import javax.jms.TextMessage;  
+
 import org.apache.activemq.ActiveMQConnection;  
 import org.apache.activemq.ActiveMQConnectionFactory;  
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
   
 public class Receiver {  
+	Logger log = LoggerFactory.getLogger(Receiver.class);
+	
     public static void main(String[] args) {  
         // ConnectionFactory ：连接工厂，JMS 用它创建连接  
         ConnectionFactory connectionFactory;  
@@ -29,14 +34,14 @@ public class Receiver {
         // Destination ：消息的目的地;消息发送给谁.  
         Destination destination;  
         // 消费者，消息接收者  
-        MessageConsumer consumer;  
+        MessageConsumer consumer;   
         connectionFactory = new ActiveMQConnectionFactory(  
                 ActiveMQConnection.DEFAULT_USER,  
                 ActiveMQConnection.DEFAULT_PASSWORD, "tcp://66.112.209.113:61616");  
         try {  
             // 构造从工厂得到连接对象  
             connection = connectionFactory.createConnection();  
-            // 启动  
+            // 启动   
             connection.start();  
             // 获取操作连接  
             session = connection.createSession(Boolean.FALSE,  

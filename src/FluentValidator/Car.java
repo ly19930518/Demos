@@ -1,5 +1,6 @@
 package FluentValidator;
 
+
 public class Car {
 	private String manufacturer;//生产商
 	private String licensePlate;//车牌

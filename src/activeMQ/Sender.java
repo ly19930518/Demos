@@ -49,14 +49,15 @@ public class Sender {
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);  
             // 构造消息，此处写死，项目就是参数，或者方法获取  
             sendMessage(session, producer);  
-//            session.commit();  
+//          session.commit();  
         } catch (Exception e) {  
             e.printStackTrace();  
         } finally {  
             try {  
                 if (null != connection)  
                     connection.close();  
-            } catch (Throwable ignore) {  
+            } catch (Throwable ignore) {
+            	ignore.printStackTrace();
             }  
         }  
     }  
